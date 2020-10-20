@@ -1,0 +1,16 @@
+{
+  "name": "dnd-engine",
+  "version": "1.0.0",
+  "description": "A dungeon and dragon game engine based on D&D 5th edition rules",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "D&D"
+  ],
+  "author": "benjamin zamour <benjamin.zamour@gmail.com>",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/benjamin-fukdawurld/DnD.js/blob/main/README.md",
+  "repository": "github:benjamin-fukdawurld/DnD.js"
+}
