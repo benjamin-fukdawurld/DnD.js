@@ -12,5 +12,8 @@
   "author": "benjamin zamour <benjamin.zamour@gmail.com>",
   "license": "Apache-2.0",
   "homepage": "https://github.com/benjamin-fukdawurld/DnD.js/blob/main/README.md",
-  "repository": "github:benjamin-fukdawurld/DnD.js"
+  "repository": "github:benjamin-fukdawurld/DnD.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
