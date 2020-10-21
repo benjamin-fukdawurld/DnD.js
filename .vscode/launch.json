@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Server",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "nodemon",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/backend/server.js"
+        },
+        {
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
@@ -14,12 +24,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "runtimeExecutable": "nodemon",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/backend/server.js"
+            "name": "Launch Insomnia",
+            "preLaunchTask": "launch insomnia"
         }
     ]
 }
