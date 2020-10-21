@@ -14,6 +14,9 @@
   "homepage": "https://github.com/benjamin-fukdawurld/DnD.js/blob/main/README.md",
   "repository": "github:benjamin-fukdawurld/DnD.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9"
   }
 }
