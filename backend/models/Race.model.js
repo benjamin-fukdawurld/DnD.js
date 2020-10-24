@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('mongoose-function')(mongoose);
 
 const Schema = mongoose.Schema
 
@@ -26,7 +27,7 @@ raceSchema = new Schema({
     handlers: {
         type: Map, of: {
             type: String,
-            match: /function\([a-zA-Z_][a-zA-Z\d_]*(?:,\s*[a-zA-Z_][a-zA-Z\d_]*)*\)\s*\{.*\}/gm
+            match: /function\([a-zA-Z_][a-zA-Z\d_]*(?:,\s*[a-zA-Z_][a-zA-Z\d_]*)*\)\s*\{[\s\S]*\}/
         }
     },
     abilities: {
