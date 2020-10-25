@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 const racesRouter = require('./routes/Race');
+const classesRouter = require('./routes/Class');
 
 app.use(cors());
 app.use(express.json())
@@ -16,6 +17,7 @@ connection.once("open", () => {
 });
 
 app.use("/races", racesRouter);
+app.use("/classes", classesRouter);
 
 app.get("/", (req, res, next) => {
     res.json({ message: "test" });
