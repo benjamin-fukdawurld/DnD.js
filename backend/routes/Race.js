@@ -1,8 +1,8 @@
 const router = require('express').Router();
 let Races = require('../models/Race.model');
 
-router.route('/').get((req, res) => {
-    Races.find()
+router.route('/').post((req, res) => {
+    Races.find().select(req.body)
         .then(races => res.json(races))
         .catch(err => res.status(400).json('Error: ' + err));
 });

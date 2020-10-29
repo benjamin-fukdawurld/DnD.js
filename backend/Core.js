@@ -1,4 +1,4 @@
-const DEFAULT_PORT = 3000;
+const DEFAULT_PORT = 5000;
 
 function normalizePort(value) {
     let port = parseInt(value, 10);

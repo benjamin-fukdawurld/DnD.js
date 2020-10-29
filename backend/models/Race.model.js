@@ -17,7 +17,6 @@ raceSchema = new Schema({
         type: Map, of: { type: String, minlength: 3 }
     },
     spellSlots: { type: Number, min: 0 },
-    longSleepDuration: { type: Number, min: 0 },
     proficiencies: {
         type: Map, of: { type: Number, min: 0 }
     },
