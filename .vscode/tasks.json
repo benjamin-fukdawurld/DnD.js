@@ -7,6 +7,23 @@
             "label": "launch insomnia",
             "type": "shell",
             "command": "insomnia"
-        }
+        },
+        {
+            "label": "Launch backend",
+            "type": "shell",
+            "command": "nodemon",
+            "args": [
+                "${workspaceFolder}/backend/server.js"
+            ]
+        },
+        {
+            "label": "Launch frontend",
+            "type": "shell",
+            "command": "npm",
+            "args": [
+                "start",
+                "${workspaceFolder}/frontend/dnd.js"
+            ]
+        },
     ]
 }

@@ -41,24 +41,14 @@ router.route('/name/:name').delete((req, res) => {
 });
 
 router.route('/:id').patch((req, res) => {
-    Races.findById(req.params.id)
-        .then((race) => {
-            Object.assign(race, req.body);
-            race.save()
-                .then(() => res.json("Race Updated"))
-                .catch(err => res.status(400).json('Error: ' + err));
-        })
+    Races.findByIdAndUpdate(req.params.id, req.body)
+        .then(() => res.json("Race Updated"))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/name/:name').patch((req, res) => {
-    Races.findOne({ name: req.params.name })
-        .then((race) => {
-            Object.assign(race, req.body);
-            race.save()
-                .then(() => res.json("Race Updated"))
-                .catch(err => res.status(400).json('Error: ' + err));
-        })
+    Races.findOneAndUpdate({ name: req.params.name }, req.body)
+        .then(() => res.json("Race Updated"))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 

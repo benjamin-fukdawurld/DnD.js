@@ -3,11 +3,12 @@ import Abilities from './Abilities';
 export default class Race {
     #_id;
     #name;
-    #alignment;
+    #alignments;
     #speed;
     #nightVision;
     #skills;
     #resistances;
+    #savingThrows;
     #longRestDuration;
     #spells;
     #spellSlots;
@@ -20,21 +21,27 @@ export default class Race {
     constructor(props) {
         this.#_id = null;
         this.#name = "";
-        this.#alignment = [];
+        this.#alignments = [];
         this.#speed = 0;
         this.#nightVision = 0;
         this.#skills = [];
         this.#resistances = {};
+        this.#savingThrows = {};
         this.#longRestDuration = 0;
         this.#spells = {};
         this.#spellSlots = 0;
         this.#proficiencies = {};
-        this.#proficiencySlots = 0;
+        this.#proficiencySlots = {};
         this.#handlers = {};
         this.#abilitySlots = 0;
         this.#abilities = new Abilities();
 
         this.assign(props);
+    }
+
+    isValid() {
+        return this.name.trim().length > 3 && this.alignments.length > 0
+            && this.speed > 0 && this.nightVision >= 0 && this.longRestDuration >= 0;
     }
 
     assign(props) {
@@ -43,11 +50,12 @@ export default class Race {
 
         this.#_id = props._id || this.#_id;
         this.#name = props.name || this.#name;
-        this.#alignment = props.alignment || this.#alignment;
+        this.#alignments = props.alignments || this.#alignments;
         this.#speed = props.speed || this.#speed;
         this.#nightVision = props.nightVision || this.#nightVision;
         this.#skills = props.skills || this.#skills;
         this.#resistances = props.resistances || this.#resistances;
+        this.#savingThrows = props.savingThrows || this.#savingThrows;
         this.#longRestDuration = props.longRestDuration || this.#longRestDuration;
         this.#spells = props.spells || this.#spells;
         this.#spellSlots = props.spellSlots || this.#spellSlots;
@@ -59,10 +67,52 @@ export default class Race {
         this.#abilities.assign(props.abilities);
     }
 
+    fromJSON(obj) { this.assign(obj); }
+
+    toJSON() {
+        let {
+            _id,
+            name,
+            alignments,
+            speed,
+            nightVision,
+            skills,
+            resistances,
+            savingThrows,
+            longRestDuration,
+            spells,
+            spellSlots,
+            longSleepDuration,
+            proficiencies,
+            proficiencySlots,
+            handlers,
+            abilitySlots
+        } = this;
+        return {
+            _id,
+            name,
+            alignments,
+            speed,
+            nightVision,
+            skills,
+            resistances,
+            savingThrows,
+            longRestDuration,
+            spells,
+            spellSlots,
+            longSleepDuration,
+            proficiencies,
+            proficiencySlots,
+            handlers,
+            abilities: this.abilities.toJSON(),
+            abilitySlots
+        };
+    }
+
     get name() { return this.#name; }
     set name(value) { this.#name = value; }
-    get alignment() { return this.#alignment; }
-    set alignment(value) { this.#alignment = value; }
+    get alignments() { return this.#alignments; }
+    set alignments(value) { this.#alignments = value; }
     get speed() { return this.#speed; }
     set speed(value) { this.#speed = value; }
     get nightVision() { return this.#nightVision; }
@@ -71,6 +121,8 @@ export default class Race {
     set skills(value) { this.#skills = value; }
     get resistances() { return this.#resistances; }
     set resistances(value) { this.#resistances = value; }
+    get savingThrows() { return this.#savingThrows; }
+    set savingThrows(value) { this.#savingThrows = value; }
     get longRestDuration() { return this.#longRestDuration; }
     set longRestDuration(value) { this.#longRestDuration = value; }
     get spells() { return this.#spells; }

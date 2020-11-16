@@ -8,7 +8,7 @@ app.set('port', Core.SERVER_PORT);
 
 const server = http.createServer(app);
 
-server.on('error', Core.errorHandler);
+server.on('error', Core.errorHandlerGenerator(server));
 server.on('listening', () => {
     console.log('Listening on ' + Core.getBindValue(server.address()));
 });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 import List from '@material-ui/core/List';
-import { ListItemLink } from './Common.component'
+import { ListItemLink } from '../Common.component'
 
 export default class RaceList extends Component {
     constructor(props) {
@@ -17,10 +17,6 @@ export default class RaceList extends Component {
             .then(res => {
                 this.setState({ races: res.data })
             });
-    }
-
-    onRaceClicked(evt) {
-        console.log(evt.target);
     }
 
     render() {

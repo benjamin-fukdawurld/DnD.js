@@ -13,7 +13,7 @@ export default class Abilities {
         this.#wisdom = 0;
         this.#charisma = 0;
 
-        this.assign(this, props);
+        this.assign(props);
     }
 
     assign(obj) {
@@ -26,6 +26,12 @@ export default class Abilities {
         this.#intelligence = obj.intelligence || this.#intelligence;
         this.#wisdom = obj.wisdom || this.#wisdom;
         this.#charisma = obj.charisma || this.#charisma;
+    }
+
+    fromJSON(obj) { this.assign(obj); }
+    toJSON() {
+        let { strength, dexterity, constitution, intelligence, wisdom, charisma } = this
+        return { strength, dexterity, constitution, intelligence, wisdom, charisma };
     }
 
     get strength() { return this.#strength; }

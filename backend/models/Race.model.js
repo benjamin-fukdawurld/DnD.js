@@ -5,18 +5,17 @@ const Schema = mongoose.Schema
 
 raceSchema = new Schema({
     name: { type: String, required: true, unique: true, trim: true, minlength: 3 },
-    alignment: [{ type: String, enum: ['LG', 'LN', 'LE', 'NG', 'N', 'NE', 'CG', 'CN', 'CE'] }],
+    alignments: [{ type: String, enum: ['LG', 'LN', 'LE', 'NG', 'N', 'NE', 'CG', 'CN', 'CE'] }],
     speed: { type: Number, min: 1, default: 9 },
     nightVision: { type: Number, min: 1, default: 1 },
     skills: [{ type: String, minlength: 2 }],
     resistances: {
+        type: Map, of: { type: Number, min: -1, max: 1, default: 0.5 }
+    },
+    savingThrows: {
         type: Map, of: { type: String, minlength: 3 }
     },
     longRestDuration: { type: Number, min: 1, default: 8 },
-    spells: {
-        type: Map, of: { type: String, minlength: 3 }
-    },
-    spellSlots: { type: Number, min: 0 },
     proficiencies: {
         type: Map, of: { type: Number, min: 0 }
     },
