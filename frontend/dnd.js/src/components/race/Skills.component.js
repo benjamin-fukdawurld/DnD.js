@@ -57,7 +57,9 @@ export default class Skills extends Component {
     get primary() { return "Skills"; }
     get skills() { return this.props.skills; }
     render() {
-        return <CollapsibleListItem primary="Skills">
+        return <CollapsibleListItem LabelProps={{
+            primary: "Skills"
+        }}>
             <NestedList component="div">
                 {this.skills.map((skill) =>
                     <NestedListItem key={skill}>

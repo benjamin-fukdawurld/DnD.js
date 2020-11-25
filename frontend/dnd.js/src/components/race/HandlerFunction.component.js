@@ -7,7 +7,9 @@ var beautify = require('js-beautify').js;
 export default class HandlerFunction extends Component {
     get handler() { return this.props.handler; }
     render() {
-        return <CollapsibleListItem primary={this.props.event}>
+        return <CollapsibleListItem LabelProps={{
+            primary: this.props.event
+        }}>
             <NestedListItem>
                 <Typography component="pre">
                     {beautify(this.handler, {

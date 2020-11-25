@@ -2,10 +2,11 @@ export { List, NestedList, NestedListItem, ListItemLink } from './utils/ListUtil
 export { CheckBoxListItem } from './utils/CheckBoxListItem.component';
 export { CollapsibleListItem } from './utils/CollapsibleListItem.component';
 export { NameField } from './utils/NameField.component';
-export { ValidOrCancel } from './utils/ButtonUtils.component';
+export { ValidOrCancel, AddButton, RemoveButton } from './utils/Buttons.component';
 export { Toast } from './utils/Toast.component';
 export { Title } from './utils/Title.component';
 export { ComboBox } from './utils/ComboBox.component';
 export { EditableNumber } from './utils/EditableNumber.component';
 export { FieldEditor } from './utils/FieldEditor.component';
 export { ListItemEditor } from './utils/ListItemEditor.component';
+export { ListEditor } from './utils/ListEditor.component';

@@ -7,13 +7,11 @@ import ResistanceEditor from './ResistanceEditor.component';
 export default function Resistance(props) {
     return <ListItemEditor {...props}
         valueFormatter={resistanceFormatter}
+        editorComponent={ResistanceEditor}
         EditorProps={{
             resistances: props.resistances,
             name: props.name,
-            initialName: props.name,
-            value: props.value
+            initialName: props.name
         }}
-    >
-        <ResistanceEditor />
-    </ListItemEditor>
+    />;
 }

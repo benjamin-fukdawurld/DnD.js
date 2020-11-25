@@ -30,8 +30,11 @@ export default class Alignments extends Component {
 
         this.props.onChange(arr);
     }
+
     render() {
-        return <CollapsibleListItem primary="Alignments">
+        return <CollapsibleListItem LabelProps={{
+            primary: "Alignments"
+        }}>
             <NestedList component="div">
                 {!this.isEditable ?
                     this.alignments.map((alignment) =>
@@ -46,7 +49,7 @@ export default class Alignments extends Component {
                             onChange={(event) => {
                                 this.onChecked(key, event.target.checked)
                             }}
-                            text_props={
+                            TextProps={
                                 {
                                     primary: value
                                 }}>

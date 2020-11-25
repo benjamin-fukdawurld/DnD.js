@@ -33,16 +33,8 @@ export const styles = {
     app_content: {
         paddingLeft: "1em"
     },
-    race_name: {
-        marginTop: 10,
-        width: 440
-    },
     race_field: {
         width: "50%"
-    },
-    H5_input: {
-        fontSize: "1.5em",
-        width: 400
     },
     list: {
         width: "100%",
@@ -55,5 +47,12 @@ export const styles = {
     },
     nested_list_item: {
         paddingLeft: theme.spacing(2)
+    },
+    editable_item: {
+        width: "100%",
+        textAlign: "left"
+    },
+    editable_item_readonly: {
+        cursor: 'default'
     }
 };

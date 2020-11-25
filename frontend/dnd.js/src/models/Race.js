@@ -40,7 +40,7 @@ export default class Race {
     }
 
     isValid() {
-        return this.name.trim().length > 3 && this.alignments.length > 0
+        return this.name.trim().length >= 3 && this.alignments.length > 0
             && this.speed > 0 && this.nightVision >= 0 && this.longRestDuration >= 0;
     }
 

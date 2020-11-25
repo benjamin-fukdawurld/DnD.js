@@ -51,7 +51,9 @@ export default class SavingThrows extends Component {
 
     render() {
         let sav = Object.keys(this.props.savingThrows).map(r => r.trim().toLowerCase());
-        return <CollapsibleListItem primary="SavingThrows">
+        return <CollapsibleListItem LabelProps={{
+            primary: "SavingThrows"
+        }}>
             <NestedList component="div">
                 {Object.entries(this.props.savingThrows).map(([key, value]) =>
                     <SavingThrow key={key}

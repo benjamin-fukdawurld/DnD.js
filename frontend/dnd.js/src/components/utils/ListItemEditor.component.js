@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
-import RemoveIcon from '@material-ui/icons/RemoveCircle';
-import AddIcon from '@material-ui/icons/AddCircle';
-import { NestedListItem } from '../Common.component';
+import { NestedListItem, AddButton, RemoveButton } from '../Common.component';
 
 import PropTypes from 'prop-types';
-
-const EditModeStatus = {
-    NotEditable: -1,
-    NotEditing: 0,
-    Editing: 1
-};
+import { EditModeStatus } from '../../common/Core';
+import EditableItem from './EditableItem.component';
 
 export class ListItemEditor extends Component {
     constructor(props) {
@@ -58,61 +51,66 @@ export class ListItemEditor extends Component {
     }
 
     get LabelItem() {
-        return <ListItemText primary={this.props.name}
-            secondary={this.props.add
-                ? this.props.addLabel
-                : this.props.valueFormatter(this.props.value)}
-            onClick={this.toggleEditable}
+        const LabelComponent = this.props.labelComponent;
+        return <LabelComponent {...Object.assign(this.props.labelPropsAdapter(
+            this.props,
+            {
+                onClick: this.toggleEditable
+            }
+        ))}
         />
     }
 
     get LabelActionButton() {
         return < ListItemSecondaryAction >
             {this.props.add
-                ? <IconButton onClick={this.toggleEditable}>
-                    <AddIcon color="secondary" />
-                </IconButton>
-                : <IconButton onClick={() => this.props.onRemove(this.props.name)}>
-                    <RemoveIcon color="secondary" />
-                </IconButton>
+                ? <AddButton onClick={this.toggleEditable} color="secondary" />
+                : <RemoveButton
+                    onClick={(event) => {
+                        event.stopPropagation();
+                        this.props.onRemove(this.props.name)
+                    }}
+                    color="secondary"
+                />
             }
         </ListItemSecondaryAction>
     }
 
     render() {
         const ItemComponent = this.props.component
-        return <ItemComponent
-            button={this.editMode === EditModeStatus.NotEditing}
-        >
-            {this.editMode !== EditModeStatus.Editing
-                ? <React.Fragment>
+        const EditorComponent = this.props.editorComponent;
+        return <ItemComponent>
+            <EditableItem readonly={this.props.readonly}>
+                <React.Fragment>
                     {this.LabelItem}
                     {!this.props.readonly && this.LabelActionButton}
                 </React.Fragment>
-                : React.cloneElement(React.Children.only(this.props.children), {
-                    ...this.props.EditorProps,
-                    value: this.props.value,
-                    onChange: (name, value) => {
+                <EditorComponent
+                    {...this.props.EditorProps}
+                    value={this.props.value}
+                    onChange={(name, value) => {
                         this.props.onChange(name, value, this.initialName)
                         this.isEditable = false;
-                    },
-                    onCancel: () => {
+                    }}
+                    onCancel={() => {
                         this.isEditable = false;
-                    }
-                })
-            }
+                    }}
+                />
+            </EditableItem>
         </ItemComponent>
     }
 }
 
 ListItemEditor.propTypes = {
     component: PropTypes.elementType,
-    nameFormatter: PropTypes.func,
+    labelComponent: PropTypes.elementType,
+    editorComponent: PropTypes.elementType.isRequired,
+    labelPropsAdapter: PropTypes.func,
     valueFormatter: PropTypes.func,
     readonly: PropTypes.bool,
     editable: PropTypes.bool,
     add: PropTypes.bool,
-    addLAbel: PropTypes.string,
+    addLabel: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.node,
@@ -122,8 +120,14 @@ ListItemEditor.propTypes = {
 
 ListItemEditor.defaultProps = {
     component: NestedListItem,
-    nameFormatter: (name) => name,
+    labelComponent: ListItemText,
     valueFormatter: (value) => value,
+    labelPropsAdapter: (props) => {
+        if (props.add)
+            return { secondary: props.addLabel };
+
+        return { primary: props.name, secondary: props.valueFormatter(props.value) };
+    },
     readonly: false,
     editable: false,
     add: false,

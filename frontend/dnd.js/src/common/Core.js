@@ -21,3 +21,9 @@ export function toTitleCase(str) {
         return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
 }
+
+export const EditModeStatus = {
+    NotEditable: -1,
+    NotEditing: 0,
+    Editing: 1
+};

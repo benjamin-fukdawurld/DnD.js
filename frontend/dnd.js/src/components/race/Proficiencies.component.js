@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CollapsibleListItem, NestedList, NestedListItem } from '../Common.component';
 
-import { EditableNumber } from '../Common.component';
+import Proficiency from './proficiencies/Proficiency.component';
 
 export default class Proficiencies extends Component {
     constructor(props) {
@@ -18,19 +18,22 @@ export default class Proficiencies extends Component {
     }
 
     render() {
-        return <CollapsibleListItem primary="Proficiencies">
+        return <CollapsibleListItem LabelProps={{
+            primary: "Proficiencies"
+        }}>
             <NestedList component="div">
                 {Object.entries(this.proficiencies).map(([key, value]) =>
                     <NestedListItem key={key}>
-                        <EditableNumber
+                        <Proficiency
                             editable={this.props.editable}
-                            className={this.props.className}
+                            EditorProps={{
+                                InputProps: {
+                                    className: this.props.className
+                                }
+                            }}
                             label={key}
                             value={value}
                             onChange={(event) => this.onChange(key, event.target.value)}
-                            min={0}
-                            max={5}
-                            step={1}
                         />
                     </NestedListItem>
                 )}

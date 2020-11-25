@@ -4,6 +4,8 @@ import { ListItem as MuiListItem, ListItemText as MuiListItemText } from '@mater
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Checkbox from '@material-ui/core/Checkbox';
 
+import PropTypes from 'prop-types';
+
 export class CheckBoxListItem extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +18,9 @@ export class CheckBoxListItem extends Component {
     set isChecked(checked) { this.setState({ checked: checked }) }
 
     render() {
-        return <MuiListItem {...this.props}>
+        const itemProps = Object.fromEntries(Object.entries(this.props)
+            .filter(([key,]) => key !== "TextProps"));
+        return <MuiListItem {...itemProps}>
             <ListItemIcon>
                 <Checkbox
                     edge="start"
@@ -24,7 +28,16 @@ export class CheckBoxListItem extends Component {
                     onClick={() => this.isChecked = !this.isChecked}
                 />
             </ListItemIcon>
-            <MuiListItemText {...this.props.text_props} />
+            <MuiListItemText {...this.props.TextProps} />
         </MuiListItem>;
     }
+}
+
+CheckBoxListItem.propTypes = {
+    checked: PropTypes.bool,
+    TextProps: PropTypes.object.isRequired
+};
+
+CheckBoxListItem.defaultProps = {
+    checked: false
 }

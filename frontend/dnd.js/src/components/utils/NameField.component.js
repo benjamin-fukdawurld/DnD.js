@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
 
@@ -42,4 +43,19 @@ export class NameField extends Component {
             InputProps={this.props.InputProps}
         />;
     }
+}
+
+NameField.propTypes = {
+    value: PropTypes.string,
+    nameValidator: PropTypes.func,
+    onErrorStateChange: PropTypes.func,
+    onChange: PropTypes.func,
+    required: PropTypes.bool,
+    label: PropTypes.string,
+    InputProps: PropTypes.object
+}
+
+NameField.defaultProps = {
+    nameValidator: (name) => name,
+    label: "Name"
 }

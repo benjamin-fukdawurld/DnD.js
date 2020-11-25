@@ -1,22 +1,24 @@
 import React from 'react';
 
-import ResistanceValueSelect from './ResistanceValueSelect.component'
-
 import { nameValidator } from '../../../common/Core';
 
-import { FieldEditor } from '../../Common.component';
+import { FieldEditor, ComboBox } from '../../Common.component';
+
+import { resistanceValues, resistanceFormatter } from '../../../common/ResistanceUtils';
 
 export default function ResistanceEditor(props) {
-    return <FieldEditor
-        label="Resistance Name"
-        nameValidator={(value) => {
-            return nameValidator(props.resistances, value, props.initialName)
-        }}
-        name={props.name}
-        value={props.value}
-        onChange={props.onChange}
-        onCancel={props.onCancel}
-    >
-        <ResistanceValueSelect label="Value" />
-    </FieldEditor>;
+    let obj = Object.assign({}, props, {
+        label: "Resistance Name",
+        nameValidator: (value) => {
+            return nameValidator(props.resistances, value, props.initialName);
+        },
+        component: ComboBox,
+        EditorProps: {
+            label: "Value",
+            values: resistanceValues,
+            valueFormatter: resistanceFormatter
+        }
+    });
+
+    return <FieldEditor {...obj} />;;
 }

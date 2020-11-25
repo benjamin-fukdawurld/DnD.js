@@ -17,7 +17,10 @@ export default class Abilities extends Component {
     }
 
     render() {
-        return <CollapsibleListItem primary="Abilities">
+        return <CollapsibleListItem LabelProps={{
+            primary: "Abilities"
+        }}
+        >
             <NestedList component="div">
                 {
                     <React.Fragment>
