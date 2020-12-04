@@ -4,12 +4,12 @@ import Axios from 'axios';
 import { List, Toast, EditableNumber } from '../Common.component';
 
 import Alignments from './Alignments.component';
-import ProficiencySlotList from './ProficiencySlotList.component';
 import Skills from './Skills.component';
 import RaceTitle from './RaceTitle.component';
 import ResistanceList from './resistances/ResistanceList.component';
 import SavingThrowList from './savingThrows/SavingThrowList.component';
 import ProficiencyList from './proficiencies/ProficiencyList.component';
+import ProficiencySlotList from './proficiencySlots/ProficiencySlotList.component';
 import Abilities from './Abilities.component';
 import Handlers from './Handlers.component';
 
@@ -151,7 +151,7 @@ class Race extends Component {
     }
 
     render() {
-        return <Box component={this.isEditable ? "form" : 'div'}>
+        return <Box component="form">
             <Toast {...this.state.toastState} onClose={this.closeToast} />
             <RaceTitle
                 editable={this.isEditable}
@@ -205,7 +205,9 @@ class Race extends Component {
                     onChange={(proficiencySlots) => this.updateRace({ proficiencySlots })}
                 />
                 <Handlers editable={this.isEditable} handlers={this.race.handlers} />
-                <Abilities editable={this.isEditable} abilities={this.race.abilities} />
+                <Abilities editable={this.isEditable} abilities={this.race.abilities}
+                    onChange={(abilities) => this.updateRace({ abilities })}
+                />
                 <ListItem>
                     <EditableNumber
                         className={this.classes.race_field}

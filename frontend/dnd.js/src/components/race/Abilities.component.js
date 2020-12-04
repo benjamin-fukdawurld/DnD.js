@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import { CollapsibleListItem, NestedList, NestedListItem } from '../Common.component';
-
-import ListItemText from '@material-ui/core/ListItemText';
+import { CollapsibleListItem, NestedList, NestedListItem, EditableNumber }
+    from '../Common.component';
 
 export default class Abilities extends Component {
     constructor(props) {
@@ -16,6 +15,22 @@ export default class Abilities extends Component {
         this.abilities[ability] = value;
     }
 
+    getAbilityComponent(abilityName, settings = {}) {
+        return <EditableNumber
+            editable={this.props.editable}
+            label={settings.label || abilityName}
+            value={this.abilities[abilityName]}
+            onChange={(value) => {
+                let abilities = this.abilities;
+                abilities[abilityName] = value;
+                this.props.onChange(abilities);
+            }}
+            min={settings.min || 1}
+            max={settings.max || 20}
+            step={settings.step || 1}
+        />;
+    }
+
     render() {
         return <CollapsibleListItem LabelProps={{
             primary: "Abilities"
@@ -25,22 +40,22 @@ export default class Abilities extends Component {
                 {
                     <React.Fragment>
                         <NestedListItem>
-                            <ListItemText primary="Strength" secondary={this.abilities["strength"]} />
+                            {this.getAbilityComponent("strength", { label: "Strength" })}
                         </NestedListItem>
                         <NestedListItem>
-                            <ListItemText primary="Dexterity" secondary={this.abilities["dexterity"]} />
+                            {this.getAbilityComponent("dexterity", { label: "Dexterity" })}
                         </NestedListItem>
                         <NestedListItem>
-                            <ListItemText primary="Constitution" secondary={this.abilities["constitution"]} />
+                            {this.getAbilityComponent("constitution", { label: "Constitution" })}
                         </NestedListItem>
                         <NestedListItem>
-                            <ListItemText primary="Intelligence" secondary={this.abilities["intelligence"]} />
+                            {this.getAbilityComponent("intelligence", { label: "Intelligence" })}
                         </NestedListItem>
                         <NestedListItem>
-                            <ListItemText primary="Wisdom" secondary={this.abilities["wisdom"]} />
+                            {this.getAbilityComponent("wisdom", { label: "Wisdom" })}
                         </NestedListItem>
                         <NestedListItem>
-                            <ListItemText primary="Charisma" secondary={this.abilities["charisma"]} />
+                            {this.getAbilityComponent("charisma", { label: "Charisma" })}
                         </NestedListItem>
                     </React.Fragment>
                 }

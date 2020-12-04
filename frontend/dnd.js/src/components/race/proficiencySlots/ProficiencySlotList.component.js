@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react';
-import { CollapsibleListItem, NestedList } from '../Common.component';
+import { ListEditor, NestedList } from '../../Common.component';
 import ProficiencySlot from './ProficiencySlot.component';
 
 export default class ProficiencySlotList extends Component {
@@ -44,25 +44,32 @@ export default class ProficiencySlotList extends Component {
 
     render() {
         this.refArray = [];
-        return <CollapsibleListItem LabelProps={{
-            primary: "Proficiency Slots"
-        }}>
-            <NestedList component="div">
-                {
-                    Object.entries(this.slots).map(([key, value]) => {
-                        this.refArray.push(createRef(null));
-                        return <ProficiencySlot key={key}
-                            ref={this.refArray[this.refArray.length - 1]}
-                            editable={this.props.editable}
-                            slot={key}
-                            points={value}
-                            onChange={(slot, points) => {
-                                this.onChange(slot, points, key)
-                            }}
-                        />
-                    })
-                }
-            </NestedList>
-        </CollapsibleListItem>;
+        const generateItemEditor = (props) => {
+            this.refArray.push(createRef(null));
+            const [slot, points] = props.item || ["*", 2];
+            return <NestedList component="div">
+                <ProficiencySlot key={props.key || (this.refArray.length - 1)}
+                    ref={this.refArray[this.refArray.length - 1]}
+                    editable={this.props.editable}
+                    slot={slot}
+                    points={points}
+                    onChange={(newSlot, points) => {
+                        this.onChange(newSlot, points, slot)
+                    }}
+                />
+            </NestedList>;
+        }
+
+        return <ListEditor
+            LabelProps={{
+                primary: "Proficiency Slots"
+            }}
+            items={this.slots}
+            editable={this.props.editable}
+            onChange={([slot, points]) => {
+                this.onChange(slot, points)
+            }}
+            generateItemEditor={generateItemEditor}
+        />;
     }
 }

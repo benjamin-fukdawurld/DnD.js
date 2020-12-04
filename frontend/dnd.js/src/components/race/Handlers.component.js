@@ -11,7 +11,7 @@ export default class Handlers extends Component {
         }}>
             {Object.entries(this.handlers).map(([key, value]) =>
                 <NestedList key={key}>
-                    <HandlerFunction event={key} handler={value} />
+                    <HandlerFunction editable={this.props.editable} event={key} handler={value} />
                 </NestedList>)}
         </CollapsibleListItem>;
     }

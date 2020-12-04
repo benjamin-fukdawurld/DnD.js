@@ -1,5 +1,4 @@
 export function nameValidator(nameList, name, initialName) {
-    let value = name;
     let error = false;
     let helperText = "";
     initialName = initialName.trim().toLowerCase()
@@ -13,7 +12,7 @@ export function nameValidator(nameList, name, initialName) {
         helperText = "Name is already in use";
     }
 
-    return { value, error, helperText };
+    return { error, helperText };
 }
 
 export function toTitleCase(str) {
