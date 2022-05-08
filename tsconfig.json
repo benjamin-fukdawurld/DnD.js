@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./dice/tsconfig.ref.json"
+    },
+    {
+      "path": "./character/tsconfig.ref.json"
+    }
+  ]
+}
