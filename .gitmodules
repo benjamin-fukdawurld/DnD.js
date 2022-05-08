@@ -1,6 +1,0 @@
-[submodule "dice"]
-	path = dice
-	url = git@github.com:benjamin-fukdawurld/dice.git
-[submodule "character"]
-	path = character
-	url = git@github.com:benjamin-fukdawurld/character.git
