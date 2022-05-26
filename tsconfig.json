@@ -2,10 +2,13 @@
   "files": [],
   "references": [
     {
-      "path": "./dice/tsconfig.ref.json"
+      "path": "./packages/@benjamin_fdw/core/tsconfig.ref.json"
     },
     {
-      "path": "./character/tsconfig.ref.json"
+      "path": "./packages/@benjamin_fdw/dice/tsconfig.ref.json"
+    },
+    {
+      "path": "./packages/@benjamin_fdw/character/tsconfig.ref.json"
     }
   ]
 }

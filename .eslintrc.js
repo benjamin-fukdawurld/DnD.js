@@ -18,13 +18,6 @@ module.exports = {
         devDependencies: ["**/*.test.ts", "**/*.spec.ts"],
       },
     ],
-    "import/extensions": [
-      "error",
-      "always",
-      {
-        ts: "never",
-        js: "never",
-      },
-    ],
+    "consistent-return": "off",
   },
 };

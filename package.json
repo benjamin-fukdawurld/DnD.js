@@ -8,12 +8,12 @@
   "author": "benjamin <benjamin.zamour@gmail.com>",
   "license": "GPL-3.0-or-later",
   "workspaces": [
-    "character",
-    "dice"
+    "packages/@benjamin_fdw/*"
   ],
   "scripts": {
     "clean": "tsc --build --clean",
     "build": "tsc --build",
-    "watch": "tsc --build --watch"
+    "watch": "tsc --build --watch",
+    "test": "jest"
   }
 }

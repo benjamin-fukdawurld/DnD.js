@@ -1,0 +1,6 @@
+[submodule "packages/@benjamin_fdw/character"]
+	path = packages/@benjamin_fdw/character
+	url = git@github.com:benjamin-fukdawurld/character.git
+[submodule "packages/@benjamin_fdw/dice"]
+	path = packages/@benjamin_fdw/dice
+	url = git@github.com:benjamin-fukdawurld/dice.git
